@@ -7,6 +7,7 @@ import { ArrowLeft, Smartphone } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { use } from "react"
+import { placesData } from "@/data/places"
 
 // Register ScrollTrigger plugin
 if (typeof window !== "undefined") {
@@ -29,64 +30,8 @@ export default function PlacePage({ params }: { params: { category: string; slug
   const contentRef = useRef<HTMLDivElement>(null)
 
   // Get place data based on category and slug
+  // Update getPlaceData to use the imported data
   const getPlaceData = () => {
-    // This is a mock implementation - in a real app, you would fetch this data from an API or database
-    const placesData: Record<string, Record<string, any>> = {
-      waterfalls: {
-        "jog-falls": {
-          name: "Jog Falls",
-          title: "Jog Falls: India's Second Highest Plunge Waterfall",
-          heroImage: "/placeholder.svg?height=800&width=1600",
-          description:
-            "Jog Falls, created by the Sharavathi River, is the second-highest plunge waterfall in India. Located in the Western Ghats of Karnataka, it's a breathtaking natural wonder where water plunges directly down from a height without streaming over rocks.",
-          sections: [
-            {
-              title: "About Jog Falls",
-              content:
-                "Jog Falls, also known as Gerusoppa Falls or Joga Falls, is created by the Sharavathi River dropping 253 meters (830 ft) in four distinct cascades - Raja (King), Rani (Queen), Rover, and Rocket. Unlike tiered waterfalls, Jog Falls plunges directly down without streaming over rocks, making it a spectacular sight, especially during the monsoon season from June to September when the water flow is at its peak.",
-              image: "/placeholder.svg?height=600&width=800",
-            },
-            {
-              title: "Best Time to Visit",
-              content:
-                "The best time to visit Jog Falls is during the monsoon season (June to September) when the waterfall is in its full glory. During winter (October to February), the water flow reduces but still offers a beautiful view with pleasant weather for exploration. Summer (March to May) sees minimal water flow as the dam upstream diverts water for electricity generation.",
-              image: "/placeholder.svg?height=600&width=800",
-            },
-            {
-              title: "How to Reach",
-              content:
-                "Jog Falls is located about 30 km from Sagara town in Shimoga district. The nearest railway station is at Sagara (Shimoga district), about 28 km away. The nearest airport is Hubli Airport, approximately 140 km from Jog Falls. Regular buses operate from major cities like Bangalore, Mangalore, and Hubli to Jog Falls. If driving from Bangalore, take the Bangalore-Honnavar road via NH-206 and NH-63 (approximately 340 km).",
-              image: "/placeholder.svg?height=600&width=800",
-            },
-            {
-              title: "Nearby Attractions",
-              content:
-                "While visiting Jog Falls, you can explore several nearby attractions including Linganamakki Dam (6 km), Sharavathi Valley Wildlife Sanctuary, Kodachadri Peak (80 km), Honnemaradu for water sports (20 km), and the historic town of Sagara with its ancient temples.",
-              image: "/placeholder.svg?height=600&width=800",
-            },
-          ],
-          facts: [
-            "Jog Falls is the second-highest plunge waterfall in India",
-            "It consists of four cascades - Raja, Rani, Rover, and Rocket",
-            "The waterfall drops from a height of 253 meters (830 feet)",
-            "The Sharavathi River creates this magnificent waterfall",
-            "A hydroelectric project upstream controls the water flow during non-monsoon seasons",
-          ],
-          tips: [
-            "Wear comfortable footwear as there are many steps to climb down to the base of the falls",
-            "Carry raincoats or umbrellas during monsoon as the spray from the falls can drench you",
-            "The viewpoint at the top offers the best panoramic view of all four cascades",
-            "Photography enthusiasts should visit during early morning for the best lighting",
-            "Carry water and snacks as options are limited near the falls",
-          ],
-          hasARModel: true,
-        },
-        // Add other waterfalls data here
-      },
-      // Add other categories data here
-    }
-
-    // Return the place data if it exists, otherwise return a default object
     return (
       (placesData[category] && placesData[category][slug]) || {
         name: "Place Not Found",
